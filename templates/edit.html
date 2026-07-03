@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Transaction</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>✏ Edit Transaction</h1>
+
+        <!-- Edit Form -->
+        <form action="/update/{{ transaction.id }}" method="post">
+
+            <!-- Title -->
+            <label>Title</label>
+            <input
+                type="text"
+                name="title"
+                value="{{ transaction.title }}"
+                required>
+
+            <!-- Amount -->
+            <label>Amount</label>
+            <input
+                type="number"
+                step="0.01"
+                name="amount"
+                value="{{ transaction.amount }}"
+                required>
+
+            <!-- Category -->
+            <label>Category</label>
+            <input
+                type="text"
+                name="category"
+                value="{{ transaction.category }}"
+                required>
+
+            <!-- Type -->
+            <label>Transaction Type</label>
+
+            <select name="type">
+
+                {% if transaction.type == "income" %}
+
+                <option value="income" selected>Income</option>
+                <option value="expense">Expense</option>
+
+                {% else %}
+
+                <option value="income">Income</option>
+                <option value="expense" selected>Expense</option>
+
+                {% endif %}
+
+            </select>
+
+            <br><br>
+
+            <button type="submit">
+                💾 Update Transaction
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/" class="cancel-btn">
+            ← Back to Home
+        </a>
+
+    </div>
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
